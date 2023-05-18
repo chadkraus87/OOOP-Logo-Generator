@@ -1,0 +1,29 @@
+{
+  "name": "ooop-logo-generator",
+  "version": "1.0.0",
+  "description": "An application that allows users to generate custom logos.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chadkraus87/OOOP-Logo-Generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chadkraus87/OOOP-Logo-Generator/issues"
+  },
+  "homepage": "https://github.com/chadkraus87/OOOP-Logo-Generator#readme",
+  "devDependencies": {
+    "jest": "^29.5.0"
+  },
+  "dependencies": {
+    "inquirer": "^8.2.5",
+    "svg.js": "^2.7.1",
+    "svgdom": "^0.1.14"
+  }
+}
