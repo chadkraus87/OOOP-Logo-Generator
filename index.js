@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const path = require('path');
 
 const shapes = ['circle', 'triangle', 'square'];
 const colors = ['red', 'blue', 'green', 'yellow', 'black', 'white','orange', 'purple', 'pink', 'brown', 'gray', 'custom'];
@@ -18,7 +19,7 @@ inquirer
     {
       type: 'list',
       name: 'textColor',
-      message: 'Select a text color:',
+      message: 'Select a text color or enter a custom color:',
       choices: [...colors, 'custom'],
     },
     {
@@ -30,7 +31,7 @@ inquirer
     {
       type: 'list',
       name: 'shapeColor',
-      message: 'Select a shape color:',
+      message: 'Select a shape color or enter a custom color:',
       choices: [...colors, 'custom'],
     },
     {
@@ -62,7 +63,8 @@ inquirer
     </svg>`;
 
     // save svg file
-    fs.writeFileSync('logo.svg', svg);
+    const filePath = path.join(__dirname, 'examples', 'logo.svg');
+    fs.writeFileSync(filePath, svg);
 
     // print output message
     console.log('Generated logo.svg');
