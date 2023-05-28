@@ -13,6 +13,8 @@ This program is designed to help users create a simple, custom logo for their pr
 
 ![Terminal Demo - Tests Passed](./examples/testspassed.png)
 
+https://github.com/chadkraus87/OOOP-Logo-Generator/assets/127354484/a5fa2498-d41c-4ce4-82b6-7f77d1b076b4
+
 ## Table of Contents
 
 - [Installation](#installation)
