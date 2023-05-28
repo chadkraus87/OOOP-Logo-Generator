@@ -5,6 +5,74 @@ const path = require('path');
 const shapes = ['circle', 'triangle', 'square'];
 const colors = ['red', 'blue', 'green', 'yellow', 'black', 'white','orange', 'purple', 'pink', 'brown', 'gray', 'custom'];
 
+class Shape {
+  constructor(shapeColor) {
+    this.shapeColor = shapeColor;
+  }
+
+  getShapePoints() {
+    return '';
+  }
+
+  draw(text, textColor) {
+    const shape = this.getShapePoints();
+    const shapeColor = this.shapeColor === 'custom' ? this.customColor : this.shapeColor;
+
+    const svg = `<svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+      <g>
+        <polygon points="${shape}" fill="${shapeColor}" />
+        <text x="150" y="100" text-anchor="middle" fill="${textColor}">${text}</text>
+      </g>
+    </svg>`;
+
+    // save svg file
+    const filePath = path.join(__dirname, 'examples', 'logo.svg');
+    fs.writeFileSync(filePath, svg);
+
+    // print output message
+    console.log('Generated logo.svg');
+  }
+}
+
+class Circle extends Shape {
+  constructor(shapeColor) {
+    super(shapeColor);
+  }
+
+  getShapePoints() {
+    const centerX = 150;
+    const centerY = 100;
+    const radius = 50;
+    const points = [];
+    for (let angle = 0; angle < 360; angle += 10) {
+      const x = centerX + radius * Math.cos(angle * Math.PI / 180);
+      const y = centerY + radius * Math.sin(angle * Math.PI / 180);
+      points.push(`${x},${y}`);
+    }
+    return points.join(' ');
+  }
+}
+
+class Triangle extends Shape {
+  constructor(shapeColor) {
+    super(shapeColor);
+  }
+
+  getShapePoints() {
+    return '150,50 250,150 50,150';
+  }
+}
+
+class Square extends Shape {
+  constructor(shapeColor) {
+    super(shapeColor);
+  }
+
+  getShapePoints() {
+    return '100,50 200,50 200,150 100,150';
+  }
+}
+
 inquirer
   .prompt([
     {
@@ -49,48 +117,27 @@ inquirer
     },
   ])
   .then(answers => {
-    // create svg file
-    const shape = getShapePoints(answers.shape);
-    const shapeColor = answers.shapeColor === 'custom' ? answers.customColor : answers.shapeColor;
+    let shape;
+    switch (answers.shape) {
+      case 'circle':
+        shape = new Circle(answers.shapeColor);
+        break;
+      case 'triangle':
+        shape = new Triangle(answers.shapeColor);
+        break;
+      case 'square':
+        shape = new Square(answers.shapeColor);
+        break;
+      default:
+        shape = new Shape(answers.shapeColor);
+        break;
+    }
+
     const text = answers.text;
     const textColor = answers.textColor === 'custom' ? answers.customColor : answers.textColor;
 
-    const svg = `<svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-      <g>
-        <polygon points="${shape}" fill="${shapeColor}" />
-        <text x="150" y="100" text-anchor="middle" fill="${textColor}">${text}</text>
-      </g>
-    </svg>`;
-
-    // save svg file
-    const filePath = path.join(__dirname, 'examples', 'logo.svg');
-    fs.writeFileSync(filePath, svg);
-
-    // print output message
-    console.log('Generated logo.svg');
+    shape.draw(text, textColor);
   })
   .catch(error => {
     console.log(error);
   });
-
-  function getShapePoints(shape) {
-    switch (shape) {
-      case 'circle':
-        const centerX = 150;
-        const centerY = 100;
-        const radius = 50;
-        const points = [];
-        for (let angle = 0; angle < 360; angle += 10) {
-          const x = centerX + radius * Math.cos(angle * Math.PI / 180);
-          const y = centerY + radius * Math.sin(angle * Math.PI / 180);
-          points.push(`${x},${y}`);
-        }
-        return points.join(' ');
-      case 'triangle':
-        return '150,50 250,150 50,150';
-      case 'square':
-        return '100,50 200,50 200,150 100,150';
-      default:
-        return '';
-    }
-  }   
