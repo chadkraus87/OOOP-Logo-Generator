@@ -9,9 +9,9 @@ This program is designed to help users create a simple, custom logo for their pr
 
 [GitHub Repository](https://github.com/chadkraus87/OOOP-Logo-Generator)
 
-![Terminal Demo](./examples/terminaldemo.png)
+![Terminal Demo - Logo](./examples/terminaldemo.png)
 
-https://github.com/chadkraus87/OOOP-Logo-Generator/assets/127354484/d1afff95-8a1a-47c4-b4f0-bcf072e7929c
+![Terminal Demo - Tests Passed](./examples/testspassed.png)
 
 ## Table of Contents
 
@@ -49,6 +49,8 @@ This project is licensed under the MIT License license.
 [SVG Basic Shapes](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Basic_Shapes)
 
 [SVG Polygon](https://www.w3schools.com/graphics/svg_polygon.asp)
+
+[JavaScript Class Extends](https://www.w3schools.com/jsref/jsref_class_extends.asp)
 
 [Video Submission Guide](https://coding-boot-camp.github.io/full-stack/computer-literacy/video-submission-guide)
 
